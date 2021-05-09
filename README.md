@@ -1,3 +1,25 @@
+## How to run
+1) Create new virtual env
+```sh
+python3 -m venv venv
+```
+2) Activate virtual env
+```sh
+source venv/bin/activate
+```
+3) Install dependencies
+```sh
+pip install -r requirements
+```
+4) Populate DB
+```sh
+python manage.py populate
+```
+5) Run server
+```sh
+python manage.py runserver
+```
+
 ## Management Commands
 To populate database with game data
 ```sh
