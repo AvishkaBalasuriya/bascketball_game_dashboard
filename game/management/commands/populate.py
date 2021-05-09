@@ -67,6 +67,7 @@ class Command(BaseCommand):
         final_round_teams = []
 
         teams = Team.objects.all()
+
         stages = Stage.objects.all().order_by('tournament_id')
 
         qualify_round_teams = teams

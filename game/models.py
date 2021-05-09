@@ -6,6 +6,11 @@ from .managers import PlayerRoundScoreManager, TeamRoundScoreManager, RoundManag
 class Team(models.Model):
     name = models.CharField(max_length=100)
 
+    @property
+    def average(self):
+        average = TeamRoundScore.objects.get_team_average(team_id=self.id)
+        return average[0]['avg_score'] if average.count() != 0 else 0
+
 
 class Coach(models.Model):
     id = models.CharField(max_length=255, primary_key=True)
@@ -33,8 +38,7 @@ class Player(models.Model):
     @property
     def average_score(self):
         average_score = PlayerRoundScore.objects.get_player_average(player_id=self.id).values('avg_score')
-        return average_score.first()[
-            'avg_score'] if average_score.count() != 0 else 0
+        return average_score[0]['avg_score'] if average_score.count() != 0 else 0
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)

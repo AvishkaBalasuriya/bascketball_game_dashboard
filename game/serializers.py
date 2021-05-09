@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, ReadOnlyField
 
-from .models import Player, Coach, Tournament, Team, Game, Stage, PlayerRoundScore, Round
+from .models import Player, Coach, Tournament, Team, Game, Stage, PlayerRoundScore, Round, TeamRoundScore
 
 
 class PlayerSerializer(ModelSerializer):
@@ -29,7 +29,7 @@ class CoachByPlayer(ModelSerializer):
 class TeamSerializer(ModelSerializer):
     class Meta(object):
         model = Team
-        fields = ('id', 'name',)
+        fields = ('id', 'name', 'average')
 
 
 class TournamentSerializer(ModelSerializer):
@@ -61,6 +61,12 @@ class PlayerRoundScoreSerializer(ModelSerializer):
     class Meta(object):
         model = PlayerRoundScore
         fields = ('game_round', 'played_player_id', 'played_player_team', 'score',)
+
+
+class TeamRoundScoreSerializer(ModelSerializer):
+    class Meta(object):
+        model = TeamRoundScore
+        fields = ('avg_score',)
 
 
 class GameSerializer(ModelSerializer):

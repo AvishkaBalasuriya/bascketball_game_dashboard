@@ -36,9 +36,9 @@ def get_by_player(request, player_id):
 @admin()
 def get_by_team(request, team_id):
     try:
-        coach = Coach.objects.select_related('team').filter(team__id=team_id)
+        coach = Coach.objects.filter(team__id=team_id)
         serialized_data = CoachSerializer(instance=coach, many=True)
         return Response(data={"success": True, "message": "Coaches successfully fetched", "data": serialized_data.data},
                         status=200)
-    except Exception:
+    except Exception as e:
         return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)

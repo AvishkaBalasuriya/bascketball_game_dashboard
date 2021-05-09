@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "6a03f277-e669-4da8-84f6-81104a3bcfdf",
+		"name": "Matific",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"danielle12@yahoo.com\",\n    \"password\":\"demo@matific\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"avishka+004@incubatelabs.com\",\n    \"password\":\"avishkan98\",\n    \"first_name\":\"Avishka\",\n    \"last_name\":\"Balasuriya\",\n    \"is_admin\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "jph5Vfx8Uj5MuUBHWfCsWzJC1KVHLC5dobZ3ipf1Og2P2yTnV7f3kz4A1mthfOlh",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Players",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/players",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"players"
+					],
+					"query": [
+						{
+							"key": "player_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "percentile",
+							"value": "20",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send password reset OTP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\":\"moorecourtney@yahoo.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/send_otp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"send_otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify OTP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"moorecourtney@yahoo.com\",\n    \"otp_code\":\"228217\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/verify_otp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"verify_otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forget Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"moorecourtney@yahoo.com\",\n    \"otp_id\":\"3d814761-167c-4181-8d07-a0ade3ebf206\",\n    \"password\":\"myNewPassword22156\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/forget_password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"forget_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get coach",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/coaches",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"coaches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scoreboard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/scoreboards",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"scoreboards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Stat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/user_stat",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"user_stat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all players by team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/players/by_team/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"players",
+						"by_team",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all players by team and percentile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/players/by_percentile/1/20",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"players",
+						"by_percentile",
+						"1",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all players by game",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/players/by_game/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"players",
+						"by_game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get player by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/players/by_id/b34456c0-8c9a-4145-bc29-f8cad6ed3522",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"players",
+						"by_id",
+						"b34456c0-8c9a-4145-bc29-f8cad6ed3522"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get coach by player ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/coaches/by_player/b34456c0-8c9a-4145-bc29-f8cad6ed3522",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"coaches",
+						"by_player",
+						"b34456c0-8c9a-4145-bc29-f8cad6ed3522"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get coach by team ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/coaches/by_team/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"coaches",
+						"by_team",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get scoreboard by tournament ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/scoreboards/by_tournament/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"scoreboards",
+						"by_tournament",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get scoreboard of game by tournament",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/scoreboards/get_games_by_tournement/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"scoreboards",
+						"get_games_by_tournement",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get scoreboard of round by game id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/scoreboards/get_score_by_round/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"scoreboards",
+						"get_score_by_round",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/teams",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get team average by team ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/game/teams/average/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"game",
+						"teams",
+						"average",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

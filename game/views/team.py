@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from game.models import Team, TeamRoundScore
+from game.models import Team
 from authentication.decorators import admin, coach_and_admin
 from game.serializers import TeamSerializer
 
@@ -11,10 +11,13 @@ from game.serializers import TeamSerializer
 def get_all(request):
     try:
         teams = Team.objects.all()
+
         serializer = TeamSerializer(instance=teams, many=True)
+
         return Response(data={"success": True, "message": "Teams successfully fetched", "data": serializer.data},
                         status=200)
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)
 
 
@@ -22,21 +25,15 @@ def get_all(request):
 @coach_and_admin()
 def get_team_average(request, team_id):
     try:
-        teams = TeamRoundScore.objects.get_team_average(team_id)
-        serializer = TeamSerializer(instance=teams, many=False)
-        return Response(data={"success": True, "message": "Team successfully fetched", "data": serializer.data},
-                        status=200)
-    except Exception:
-        return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)
+        try:
+            team = Team.objects.get(id=team_id)
 
+            serializer = TeamSerializer(instance=team, many=False)
 
-@api_view(["GET"])
-@admin()
-def get_teams_average(request):
-    try:
-        teams = TeamRoundScore.objects.get_teams_average()
-        serializer = TeamSerializer(instance=teams, many=True)
-        return Response(data={"success": True, "message": "Teams successfully fetched", "data": serializer.data},
-                        status=200)
-    except Exception:
+            return Response(data={"success": True, "message": "Team successfully fetched", "data": serializer.data},
+                            status=200)
+        except Team.DoesNotExist:
+            return Response(data={"success": True, "message": "No team", "data": None},
+                            status=200)
+    except Exception as e:
         return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)

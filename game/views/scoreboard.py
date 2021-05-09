@@ -25,11 +25,16 @@ def get_all(request):
 @permission_classes([AllowAny])
 def get_by_tournament_id(request, tournament_id):
     try:
-        tournament = Tournament.objects.get(id=tournament_id)
-        serializer = TournamentSerializer(instance=tournament, many=False)
-        return Response(
-            data={"success": True, "message": "All tournament data successfully fetched", "data": serializer.data},
-            status=200)
+        try:
+            tournament = Tournament.objects.get(id=tournament_id)
+            serializer = TournamentSerializer(instance=tournament, many=False)
+            return Response(
+                data={"success": True, "message": "All tournament data successfully fetched", "data": serializer.data},
+                status=200)
+        except Tournament.DoesNotExist:
+            return Response(
+                data={"success": True, "message": "No tournament data", "data": None},
+                status=200)
     except Exception:
         return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)
 

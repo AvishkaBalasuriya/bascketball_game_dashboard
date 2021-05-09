@@ -19,14 +19,13 @@ urlpatterns = [
 
     # Teams
     path('teams', team.get_all, name="get_all_teams"),
-    path('teams/average', team.get_teams_average, name="get_teams_average"),
     path('teams/average/<int:team_id>', team.get_team_average, name="get_team_average"),
 
     # Scoreboard
     path('scoreboards', scoreboard.get_all, name="get_all_scoreboard"),
-    path('scoreboards/by_tournament/<int:tournement_id>', scoreboard.get_by_tournament_id,
+    path('scoreboards/by_tournament/<int:tournament_id>', scoreboard.get_by_tournament_id,
          name="get_scoreboard_by_tournament_id"),
-    path('scoreboards/get_games_by_tournement/<int:tournement_id>', scoreboard.get_all_games_by_tournament,
+    path('scoreboards/get_games_by_tournement/<int:tournament_id>', scoreboard.get_all_games_by_tournament,
          name="get_all_games_by_tournament"),
     path('scoreboards/get_score_by_round/<int:game_id>', scoreboard.get_score_by_round,
          name="get_game_score_by_round"),

@@ -83,18 +83,21 @@ WSGI_APPLICATION = 'basketball_game_dashboard.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'matific',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '8889'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'matific',
+    #     'USER': 'root',
+    #     'PASSWORD': 'password',
+    #     'HOST': 'db',
+    #     'PORT': '3306',
+    #     'TEST': {
+    #         'NAME': 'test_administrative',
+    #     }
+    # },
 }
 
 # Password validation

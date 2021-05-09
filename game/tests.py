@@ -110,3 +110,187 @@ class GameTest(TestCase):
         response = self._client.get(self._get_all_players)
 
         self.assertEqual(response.status_code, 403)
+
+    def test_get_all_players_by_team(self):
+        url = reverse('get_players_by_team', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_players_by_percentile(self):
+        url = reverse('get_players_by_percentile', args=(1, 90,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_players_by_game(self):
+        url = reverse('get_players_by_game', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_players_by_id(self):
+        player = self.create_player()
+
+        url = reverse('get_player_by_player_id', args=(player.id,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_coaches(self):
+        url = reverse('get_all_coaches')
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_coach()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_coaches_by_player(self):
+        url = reverse('get_coaches_by_player', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_coaches_by_team(self):
+        url = reverse('get_coaches_by_team', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+        self.create_team()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_team(self):
+        url = reverse('get_all_teams')
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+        self.create_team()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_team_average(self):
+        team_id = self.create_team().id
+        url = reverse('get_team_average', args=(team_id,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_all_scoreboards(self):
+        url = reverse('get_all_scoreboard')
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+        self.create_team()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_scoreboards_by_tournament(self):
+        url = reverse('get_scoreboard_by_tournament_id', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+        self.create_team()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_scoreboards_for_game_by_tournament(self):
+        url = reverse('get_all_games_by_tournament', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+        self.create_team()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)
+
+    def test_get_scoreboards_for_game_by_game_id(self):
+        url = reverse('get_game_score_by_round', args=(1,))
+
+        self.create_user_account(is_admin=True)
+        self.log_user(self._test_email, self._test_password)
+
+        self.create_player()
+        self.create_coach()
+        self.create_team()
+
+        response = self._client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data["success"], True)

@@ -3,11 +3,11 @@ from django.db.models import QuerySet, Avg, Count, Sum
 
 class TeamRoundScoreQuerySet(QuerySet):
     def get_teams_average(self):
-        return self.values('team').annotate(
+        return self.values('team_id').annotate(
             avg_score=Avg('score'))
 
     def get_team_average(self, team_id):
-        return self.filter(team__id=team_id).values('team').annotate(
+        return self.filter(team__id=team_id).values('team_id').annotate(
             avg_score=Avg('score'))
 
 

@@ -42,7 +42,6 @@ def get_by_game(request, game_id):
         return Response(data={"success": True, "message": "Players successfully fetched", "data": serializer.data},
                         status=200)
     except Exception as e:
-        print(traceback.format_exc())
         return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)
 
 
@@ -80,10 +79,13 @@ def get_by_percentile(request, team_id, percentile):
 @coach_and_admin()
 def get_by_player_id(request, player_id):
     try:
-        player = Player.objects.get(id=player_id)
-        serializer = PlayerSerializer(instance=player)
-        return Response(data={"success": True, "message": "Players successfully fetched", "data": serializer.data},
-                        status=200)
+        try:
+            player = Player.objects.get(id=player_id)
+            serializer = PlayerSerializer(instance=player)
+            return Response(data={"success": True, "message": "Players successfully fetched", "data": serializer.data},
+                            status=200)
+        except Player.DoesNotExist:
+            return Response(data={"success": False, "message": "No player data for ID", "data": None},
+                            status=200)
     except Exception:
-        print(traceback.format_exc())
         return Response(data={"success": False, "message": "Unexpected error", "data": None}, status=500)
